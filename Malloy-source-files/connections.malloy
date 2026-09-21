@@ -2,9 +2,20 @@
 -- Shared DuckDB connection / path conventions for the MTGJSON models.
 --
 -- Malloy's duckdb connector reads parquet files directly via
--- duckdb.table('<path>'). Paths are resolved relative to the .malloy file
--- that references them, so models in this directory use '../data/*.parquet'.
+-- duckdb.table('<path>'). Each source file here uses
+-- duckdb.table('../data/<file>.parquet'), i.e. the repo-root data/ folder.
+--
+-- A relative path is NOT resolved against the .malloy file. DuckDB resolves
+-- it against the connection's working directory:
+--
+--   * malloy-cli: the shell's current directory. Run it from inside this
+--     folder:  cd Malloy-source-files && malloy-cli run queries.malloy
+--   * Publisher: the package directory under publisher_data/. Start it with
+--     `--watch-env mtgjson` so that directory is a symlink back to this
+--     folder and '../data' lands on the repo-root data/. Without the flag
+--     Publisher serves a copy, '../data' points inside publisher_data/, and
+--     every source fails with "IO Error: No files found that match the
+--     pattern".
 --
 -- There is no standalone "connection" object to declare here — this file
--- exists as documentation of the convention. Each source file below uses
--- duckdb.table('../data/<file>.parquet') directly.
+-- exists as documentation of the convention.

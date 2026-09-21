@@ -14,7 +14,7 @@
 
 import "sets.malloy"
 
-source: cards is duckdb.table('/Users/benpelcyger/repos/Malloy Test/data/cards.parquet') extend {
+source: cards is duckdb.table('../data/cards.parquet') extend {
   primary_key: uuid
 
   -- ---- Join to sets dimension ----
