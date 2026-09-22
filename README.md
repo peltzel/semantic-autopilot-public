@@ -28,9 +28,10 @@ They were generated with Claude after I explained the idea.
 I picked it only because I know that data well, so I can spot a wrong
 answer quickly. Nothing in the approach is specific to cards.
 
-**Where this went.** The project has since grown into **Columnbo**. There
-is a live demo at <http://magic.columnbo.com>. This repo is the original
-proof of concept.
+**Where this went.** The project has since grown into
+[Columnbo](https://columnbo.com), which works on any dataset. There is a
+live demo on the Magic data at <http://magic.columnbo.com>. This repo is
+the original proof of concept.
 
 ![Test UI screenshot](screenshot.jpg)
 
@@ -50,8 +51,8 @@ You need Node 18+ and an Anthropic API key. Details are in
 1. Clone the repo:
 
    ```bash
-   git clone https://github.com/peltzel/semantic-autopilot-public.git
-   cd semantic-autopilot-public
+   git clone https://github.com/peltzel/columnbo-proof-of-concept.git
+   cd columnbo-proof-of-concept
    ```
 
 2. Get the data. Download
@@ -104,7 +105,7 @@ Each phase was driven by one prompt, given to a coding agent:
 
 | Phase | Prompt |
 |-------|--------|
-| 1 — Data load | [1-setup-db.md](docs/prompts/1-setup-db.md) (currently empty) |
+| 1 — Data load | [1-setup-db.md](docs/prompts/1-setup-db.md) (reconstructed; the original was not saved) |
 | 2 — Data catalog | [2-generate-data-catalog.md](docs/prompts/2-generate-data-catalog.md) |
 | 3 — Malloy semantic model | [3-write-malloy-files.md](docs/prompts/3-write-malloy-files.md) |
 | 4a — Malloy Publisher | [4a-install-malloy-publisher.md](docs/prompts/4a-install-malloy-publisher.md) |
@@ -114,7 +115,7 @@ Each phase was driven by one prompt, given to a coding agent:
 | 7 — Analyst mode | [7-analyst-mode-prompt.md](docs/prompts/7-analyst-mode-prompt.md) |
 | 8 — Conversational threading | [8-conversational-threading.md](docs/prompts/8-conversational-threading.md) |
 
-The prompts are kept exactly as they were originally run, so they refer to
+The prompts are kept exactly as they were originally run (except Phase 1, reconstructed), so they refer to
 the project's original local folder name, "Malloy Test".
 
 ## Prerequisites
@@ -134,8 +135,8 @@ the project's original local folder name, "Malloy Test".
 Parquet files live in `data/`. Validate with DuckDB:
 
 ```bash
-duckdb -c "SELECT COUNT(*) FROM 'data/cards.parquet';"   # → 109,733
-duckdb -c "SELECT COUNT(*) FROM 'data/sets.parquet';"    # → 855
+duckdb -c "SELECT COUNT(*) FROM 'data/cards.parquet';"   # → 114,710 (Sept 2026; grows with each MTGJSON release)
+duckdb -c "SELECT COUNT(*) FROM 'data/sets.parquet';"    # → 869
 ```
 
 ## Phase 2 — ODCS catalogs

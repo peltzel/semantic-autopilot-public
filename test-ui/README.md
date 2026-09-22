@@ -31,7 +31,7 @@ The proxy server exists only so (a) the Claude API key stays server-side and
    project and `mtgjson-analytics` package loaded. Start it from the repo
    root:
    ```bash
-   # from the repo root (semantic-autopilot-public)
+   # from the repo root (columnbo-proof-of-concept)
    nohup npx -y @malloy-publisher/server@latest --port 4000 --server_root . --watch-env mtgjson \
      > /tmp/publisher.log 2>&1 &
    ```
