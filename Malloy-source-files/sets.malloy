@@ -3,7 +3,7 @@
 -- Source of truth for column definitions: catalog/sets.odcs.yaml
 -- One row per set. ~855 rows. Joined to cards on cards.setCode = sets.code.
 
-source: sets is duckdb.table('/Users/benpelcyger/repos/Malloy Test/data/sets.parquet') extend {
+source: sets is duckdb.table('../data/sets.parquet') extend {
   primary_key: code
 
   -- ---- Dimensions ----

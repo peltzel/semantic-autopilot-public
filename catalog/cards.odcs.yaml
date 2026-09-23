@@ -517,6 +517,18 @@ schema:
           - false
         tags: [flavor, story]
 
+      - name: isOversized
+        businessName: Is Oversized
+        logicalType: boolean
+        physicalType: boolean
+        description: True if the printing is an oversized card (e.g. Planechase planes, Archenemy schemes, oversized commander promos). NULL rather than false when not oversized, like the other is* flags.
+        required: false
+        primaryKey: false
+        examples:
+          - true
+          - false
+        tags: [physical-format, categorization]
+
       - name: artist
         businessName: Artist
         logicalType: string
